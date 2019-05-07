@@ -1,3 +1,9 @@
+const dotenv = require('dotenv')
+
+if(process.env.NODE_ENV !== 'production') {
+  dotenv.config()
+}
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
@@ -66,6 +72,14 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    {
+      resolve: `gatsby-source-contentful`,
+      options:{
+        spaceId: `t4n9ybbj6ieg`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
+    },
+    `@contentful/gatsby-transformer-contentful-richtext`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
